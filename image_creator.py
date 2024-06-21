@@ -2,10 +2,12 @@ import requests
 import json
 import subprocess
 from PIL import Image
-
+from datetime import datetime
 # Enable debug logging for requests
 import logging
 import http.client as http_client
+
+current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 http_client.HTTPConnection.debuglevel = 1
 
@@ -37,10 +39,10 @@ for model in models:
     payload = {
         "session_id": session_id,
         "images": 1,
-        "prompt": "the killer rabbit of Caerbannog",
+        "prompt": "A hyperrealistic depiction of a wizard inside a futuristic data center from the year 3000. The wizard, dressed in modern high-tech robes adorned with glowing symbols, stands in the middle of a vast room filled with sleek, advanced servers and holographic interfaces. The environment is illuminated by the blue and purple glow of the technology surrounding him. The wizard is casting a spell, with swirling magical energy integrating seamlessly with the digital elements around him, creating a blend of mysticism and advanced technology. The overall scene should feel both fantastical and cutting-edge, highlighting the fusion of magic and futuristic technology.",
         "model": model,
         "width": 1024,
-        "height": 1024
+        "height": 576
     }
     response = requests.post(generate_url, headers=headers, data=json.dumps(payload))
     if response.status_code == 200:
@@ -59,7 +61,7 @@ for model in models:
 
 # Step 3: Download the image using wget
 
-    image_filename = f"{ model }_killer_rabbit_of_caerbannog.png"
+    image_filename = f"{current_datetime}_{ model }_image.png"
     subprocess.run(["wget", image_url, "-O", image_filename])
 
     # Step 4: Display the image using Pillow
