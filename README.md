@@ -2,7 +2,7 @@
 A Python script to run multiple Image generation models against the SwarmUI API
 
 ## Please watch this YouTube video to get going
-
+https://youtu.be/iBXwCMFsuvQ
 
 ### Install StableSwarmUI 
 https://github.com/Stability-AI/StableSwarmUI?tab=readme-ov-file
